@@ -55,18 +55,29 @@ def get_shape_and_size(range1, range2, part):
         return shape, [shape_xyz, shape_xyz]
 # generates suitable pos/euler for legs based on body/leg sizes
 def get_pos_and_euler(body_size, leg_size, first):
+
     if first == True:
-        euler = random.randint(-180, 180)
-        if euler in range(-90, 0):
-            return ([0, (-(body_size[0] + leg_size[1])), 0], [-90, 0, 0])
-        elif euler in range(1, 90):
-            return ([0, body_size[0] + leg_size[1], 0], [90, 0, 0])
-        elif euler in range(91, 180):
-            return ([0, 0, -(body_size[1] + leg_size[1])], [0, 0, 0])
-        elif euler in range(-180, -91):
-            return ([0, 0, body_size[1] + leg_size[1]], [180, 0, 0])
+        rotate_0 = [0, -(body_size[1] + leg_size[1])]
+        rotate_90 = [90, body_size[0] + leg_size[1]]
+        rotate_180 = [180, body_size[1] + leg_size[1]]
+        rotate_neg90 = [-90, -(body_size[0] + leg_size[1])]
+        rotate_top = [90, -(body_size[0] + leg_size[1])]
+        rotate_bottom = [-90, body_size[0] + leg_size[1]]
+        choice = random.choice(['xy_euler','z_euler'])
+        
+        if choice == 'xy_euler':
+            xy_euler = random.choice([rotate_0, rotate_90, rotate_180, rotate_neg90])
+            if xy_euler in [rotate_neg90, rotate_90]:
+                return ([0, xy_euler[1], 0], [xy_euler[0], 0, 0])
+            elif xy_euler in [rotate_0, rotate_180]:
+                return ([0, 0, xy_euler[1]], [xy_euler[0], 0, 0])
+        elif choice == 'z_euler':
+            z_euler = random.choice([rotate_top, rotate_bottom])
+            return ([z_euler[1], 0, 0], [0, z_euler[0], 0])
+    
     else:
         return ([0, 0, -leg_size[1]*2], [0, 0, 0])
+    
 # generates suitable pos/axis for joints based on leg size
 def get_joint_pos_axis_range(leg_size):
     joint_range = random.randint(30, 80)
@@ -79,6 +90,7 @@ def add_body(body_shape, body_size):
     joint = '''\n\t<joint type='free'/>'''
     geom = '''\n\t<geom type='{}' size='{}' rgba='{}'/>'''.format(body_shape, convert_to_string(reformat_sizes(body_shape, body_size)), choose_color(), {})
     return body.format(joint, geom, {})
+
 # fills in xml template for leg with given info
 def add_leg(leg_name, leg_shape, leg_size, leg_pos_euler, joint_pos_axis_range, end):
     geom_temp = '''\n\t\t<geom type='{}' size='{}' rgba='{}'/>{}'''
@@ -108,8 +120,8 @@ def init_creature_geno(leg_num, leg_seg_num):
     return creature
 # creates the xml phenotype of a creature based on the geno type
 def build_creature_pheno(geno):
-    body_shape_size = get_shape_and_size([0.25, 0.3], [0.35, 0.4], 'body')
-    leg_shape_size = get_shape_and_size([0.1, 0.15], [0.25, 0.3], 'leg')
+    body_shape_size = get_shape_and_size([0.2, 0.25], [0.25, 0.3], 'body')
+    leg_shape_size = get_shape_and_size([0.06, 0.09], [0.1, 0.2], 'leg')
     pheno = '''{}'''
     legs = ''
     for node in geno.graph.items():
@@ -143,10 +155,10 @@ def build_creature_motors(geno):
 def write_to_xml(xml_file, geno):
     mujoco_world = '''
         <mujoco>
-            <option gravity="0 0 -15"/>
+            <option gravity="0 0 -25"/>
             <worldbody>
                 <light diffuse=".5 .5 .6" pos="0 2 3" dir="0 -0.5 -1"/>
-                <geom type="plane" size="3 3 0.1" rgba="0.8 0.8 0.8 1"/>
+                <geom type="plane" size="5 5 0.1" rgba="0.8 0.8 0.8 1"/>
                 {}
             </worldbody>
                 <actuator>
@@ -163,6 +175,7 @@ def write_to_xml(xml_file, geno):
 def main(num_leg, num_seg):
     # actually simulating the model:
     geno = init_creature_geno(num_leg, num_seg)
+    geno.get_graph()
     write_to_xml('blah.xml', geno)
     new_arr = random.sample(range(-50, 50), num_leg)
 
