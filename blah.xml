@@ -1,41 +1,68 @@
 <mujoco>
-            <option gravity="0 0 -15" />
+            <option gravity="0 0 -25" />
             <worldbody>
                 <light diffuse=".5 .5 .6" pos="0 2 3" dir="0 -0.5 -1" />
-                <geom type="plane" size="3 3 0.1" rgba="0.8 0.8 0.8 1" />
+                <geom type="plane" size="5 5 0.1" rgba="0.8 0.8 0.8 1" />
                 <body name="body" pos="0 0 1" euler="0 90 0">
 	<joint type="free" />
-	<geom type="sphere" size="0.27 0.27 0.27" rgba="1.35 0.9 0.3 1.0" />
-	<body name="leg0" pos="0 0 -0.55" euler="0 0 0">
-		<joint name="leg0_joint" type="hinge" pos="0 0 0.28" axis="0 90 0" range="-45 45" />
-		<geom type="box" size="0.1 0.1 0.28" rgba="1.4 0.5 0.75 1.0" />
-	<body name="leg0_seg1" pos="0 0 -0.56" euler="0 0 0">
-		<joint name="leg0_seg1_joint" type="hinge" pos="0 0 0.28" axis="0 90 0" range="-45 45" />
-		<geom type="box" size="0.1 0.1 0.28" rgba="1.4 0.5 0.75 1.0" />
+	<geom type="box" size="0.22 0.22 0.22" rgba="1.35 0.9 0.3 1.0" />
+	<body name="leg0" pos="0 0 -0.4" euler="0 0 0">
+		<joint name="leg0_joint" type="hinge" pos="0 0 0.18" axis="0 90 0" range="-32 32" />
+		<geom type="cylinder" size="0.08 0.18 0.18" rgba="1.4 0.5 0.75 1.0" />
+	<body name="leg0_seg1" pos="0 0 -0.36" euler="0 0 0">
+		<joint name="leg0_seg1_joint" type="hinge" pos="0 0 0.18" axis="0 90 0" range="-32 32" />
+		<geom type="cylinder" size="0.08 0.18 0.18" rgba="0.4 0.7 1.5 1.0" />
 	</body>
 	</body>
-	<body name="leg1" pos="0 0.55 0" euler="90 0 0">
-		<joint name="leg1_joint" type="hinge" pos="0 0 0.28" axis="0 90 0" range="-53 53" />
-		<geom type="box" size="0.1 0.1 0.28" rgba="1.4 0.5 0.75 1.0" />
-	<body name="leg1_seg1" pos="0 0 -0.56" euler="0 0 0">
-		<joint name="leg1_seg1_joint" type="hinge" pos="0 0 0.28" axis="0 90 0" range="-53 53" />
-		<geom type="box" size="0.1 0.1 0.28" rgba="1.4 0.5 0.75 1.0" />
+	<body name="leg1" pos="0.4 0 0" euler="0 -90 0">
+		<joint name="leg1_joint" type="hinge" pos="0 0 0.18" axis="0 90 0" range="-59 59" />
+		<geom type="cylinder" size="0.08 0.18 0.18" rgba="0.4 0.7 1.5 1.0" />
+	<body name="leg1_seg1" pos="0 0 -0.36" euler="0 0 0">
+		<joint name="leg1_seg1_joint" type="hinge" pos="0 0 0.18" axis="0 90 0" range="-59 59" />
+		<geom type="cylinder" size="0.08 0.18 0.18" rgba="1.35 0.9 0.3 1.0" />
 	</body>
 	</body>
-	<body name="leg2" pos="0 0 0.55" euler="180 0 0">
-		<joint name="leg2_joint" type="hinge" pos="0 0 0.28" axis="0 90 0" range="-47 47" />
-		<geom type="box" size="0.1 0.1 0.28" rgba="1.35 0.9 0.3 1.0" />
-	<body name="leg2_seg1" pos="0 0 -0.56" euler="0 0 0">
-		<joint name="leg2_seg1_joint" type="hinge" pos="0 0 0.28" axis="0 90 0" range="-47 47" />
-		<geom type="box" size="0.1 0.1 0.28" rgba="0.4 0.7 1.5 1.0" />
+	<body name="leg2" pos="-0.4 0 0" euler="0 90 0">
+		<joint name="leg2_joint" type="hinge" pos="0 0 0.18" axis="0 90 0" range="-36 36" />
+		<geom type="cylinder" size="0.08 0.18 0.18" rgba="0.4 0.7 1.5 1.0" />
+	<body name="leg2_seg1" pos="0 0 -0.36" euler="0 0 0">
+		<joint name="leg2_seg1_joint" type="hinge" pos="0 0 0.18" axis="0 90 0" range="-36 36" />
+		<geom type="cylinder" size="0.08 0.18 0.18" rgba="1.4 0.5 0.75 1.0" />
+	</body>
+	</body>
+	<body name="leg3" pos="-0.4 0 0" euler="0 90 0">
+		<joint name="leg3_joint" type="hinge" pos="0 0 0.18" axis="0 90 0" range="-62 62" />
+		<geom type="cylinder" size="0.08 0.18 0.18" rgba="1.4 0.5 0.75 1.0" />
+	<body name="leg3_seg1" pos="0 0 -0.36" euler="0 0 0">
+		<joint name="leg3_seg1_joint" type="hinge" pos="0 0 0.18" axis="0 90 0" range="-62 62" />
+		<geom type="cylinder" size="0.08 0.18 0.18" rgba="1.35 0.9 0.3 1.0" />
+	</body>
+	</body>
+	<body name="leg4" pos="0 0.4 0" euler="90 0 0">
+		<joint name="leg4_joint" type="hinge" pos="0 0 0.18" axis="0 90 0" range="-33 33" />
+		<geom type="cylinder" size="0.08 0.18 0.18" rgba="1.35 0.9 0.3 1.0" />
+	<body name="leg4_seg1" pos="0 0 -0.36" euler="0 0 0">
+		<joint name="leg4_seg1_joint" type="hinge" pos="0 0 0.18" axis="0 90 0" range="-33 33" />
+		<geom type="cylinder" size="0.08 0.18 0.18" rgba="0.4 0.7 1.5 1.0" />
+	</body>
+	</body>
+	<body name="leg5" pos="-0.4 0 0" euler="0 90 0">
+		<joint name="leg5_joint" type="hinge" pos="0 0 0.18" axis="0 90 0" range="-38 38" />
+		<geom type="cylinder" size="0.08 0.18 0.18" rgba="0.4 0.7 1.5 1.0" />
+	<body name="leg5_seg1" pos="0 0 -0.36" euler="0 0 0">
+		<joint name="leg5_seg1_joint" type="hinge" pos="0 0 0.18" axis="0 90 0" range="-38 38" />
+		<geom type="cylinder" size="0.08 0.18 0.18" rgba="1.4 0.5 0.75 1.0" />
 	</body>
 	</body>
 </body>
             </worldbody>
                 <actuator>
-                    <motor gear="42" joint="leg0_joint" />
-<motor gear="49" joint="leg1_joint" />
-<motor gear="32" joint="leg2_joint" />
+                    <motor gear="67" joint="leg0_joint" />
+<motor gear="47" joint="leg1_joint" />
+<motor gear="78" joint="leg2_joint" />
+<motor gear="40" joint="leg3_joint" />
+<motor gear="50" joint="leg4_joint" />
+<motor gear="74" joint="leg5_joint" />
 
                 </actuator>
         </mujoco>
