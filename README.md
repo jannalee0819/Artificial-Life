@@ -1,29 +1,29 @@
-# Artificial Life
+## Artificial Life
 UPDATED FOR FINAL
 
-# PROJECT
+### PROJECT
 Contains my work for CS 396 Artifical Life. Purpose is to develop an evolutionary algorithm that optimizes a creature to meet a certain fitness criteria in physics rendering simulator mujoco. Folders correspond to homework assignments--each folder contains a xml file (output) and a py file (simulation code).
 
 
-# HOW TO RUN
+###  HOW TO RUN
 Run the .py file and it'll write to the xml file, which will then be used to build the simulation. You can observe the parameters (eg. parents, children) used to generate the species and adjust to your liking. 
 
 
-# FUNCTIONS
+###  FUNCTIONS
 code can be split into different sections: graph function for initiating creature genotype, helper functions to ensure properly positioned elements, initialize functions for assembling the creature, builder functions for translating info to xml code, mutation and fitness functions, and the simulation functions. most of the core functionality lies in the init_creature_geno(), generate_pheno_traits(), build_creature_pheno(), and mutate_geno/pheno() functions. 
 
 
-# FITNESS
+###  FITNESS
 fitness is measured by distance traveled for this evolutionary algorithm. this is calculated with the math module's .dist() function, with mujoco's .xpos being passed in as start/end points. 
 
 
-# MUTATIONS
+###  MUTATIONS
 mutations are generated based on geno and pheno of the parent generation. available traits to be mutated include: body size/shape, leg size/shape, # of legs, # of leg segments. with each mutation, only 1 trait from geno is mutated, whether it's # of legs or # of segments, and only 1 trait from pheno is mutated whether its leg/body size/shape. 
 
-# EVOLUTION
+###  EVOLUTION
 in my demo video, I test two approaches to evolution -- large population (increased diversity) with fewer generations (decreased selection), and small population (decreased diversity) with more generations (increased selections) to observe which would output a more optimal creature. I ran each method 3 times, with 30/10 population/generations and 10/30 population/generations. 
 
-# RESULTS 
+###  RESULTS 
 30/10 - trial 1
       Initial       |        Final
 ------------------- | -------------------
